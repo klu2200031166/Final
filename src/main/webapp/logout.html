@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register</title>
+    <style>
+    /* Your existing CSS styles here */
+    </style>
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <h2>Login</h2>
+        <form onsubmit="loginUser(); return false;" method="get">
+            <label for="user-type">Login as:</label>
+            <select id="user-type" name="user-type" onchange="showLoginFields()">
+                <option value="customer">Customer</option>
+                <option value="admin">Admin</option>
+                <option value="artist">Artist</option>
+                <option value="cultural_consultant">Cultural Consultant</option>
+            </select>
+
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+
+            <p>Don't have an account? <a href="#" onclick="showRegister()">Create one</a></p>
+        </form>
+    </div>
+
+    <!-- Register Page -->
+    <div class="register-container" id="registerPage" style="display: none;">
+        <h2>Register</h2>
+        <form onsubmit="registerSuccess(); return false;">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="mobno">Mobile Number</label>
+            <input type="text" id="mobno" name="mobno" placeholder="Enter your mobile number" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm your password" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Background Overlay -->
+    <div class="background-overlay"></div>
+
+    <script>
+        function showRegister() {
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("registerPage").style.display = "block";
+        }
+
+        function registerSuccess() {
+            alert("Registered successfully");
+            document.getElementById("registerPage").style.display = "none";
+            document.getElementById("loginPage").style.display = "block";
+        }
+
+        function loginUser() {
+            var userType = document.getElementById("user-type").value;
+            alert(userType + " logged in successfully");
+
+            // Set the user type in sessionStorage for the session
+            sessionStorage.setItem('userType', userType);
+
+            // Redirect based on user type
+            if (userType === "cultural_consultant") {
+                window.location.href = 'CulturalConsultant.html'; // Redirect to cultural consultant home
+            } else if (userType === "artist") {
+                window.location.href = 'artisianHome.html'; // Redirect to artist home
+            } else if (userType === "customer") {
+                window.location.href = 'paintings.html'; // Redirect to customer home
+            } else {
+                window.location.href = 'adminHome.html'; // Redirect for any other user type
+            }
+        }
+
+        function logoutUser() {
+            // Remove user session data
+            sessionStorage.removeItem('userType');
+            
+            // Redirect to login page
+            window.location.href = 'index.html'; // Assuming the login page is named index.html
+        }
+
+        // Optionally, you can add a logout button for logged-in users
+        if (sessionStorage.getItem('userType')) {
+            document.body.innerHTML += `
+                <button onclick="logoutUser()">Logout</button>
+            `;
+        }
+    </script>
+
+</body>
+</html>

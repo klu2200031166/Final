@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #6A0DAD;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+#order-list {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background: #6A0DAD;
+    color: white;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #6A0DAD;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5d0c9b;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #6A0DAD;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+   
+    
+        /* Retain your original styles here... */
+
+        #editModal {
+            display: none; /* Hide by default */
+            position: fixed; /* Fixed position to stay on screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            z-index: 1000; /* Ensure modal appears above all other content */
+        }
+
+        #editModal > div {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px; /* Set width of the modal */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #6A0DAD;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5d0c9b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Manage Orders</h1>
+        <nav>
+            <ul>
+                <li><a href="Signup.html">Signup</a></li>
+                <li><a href="artisianHome.html">Create Listing</a></li>
+                <li><a href="manageOrders.html">Manage Orders</a></li>
+                <li><a href="customerCommunication.html">Customer Communication</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="order-list">
+            <h2>Your Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product Name</th>
+                        <th>Customer Name</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-tbody">
+                    <!-- Sample order row -->
+                    <tr id="order-101">
+                        <td>101</td>
+                        <td>Handcrafted Vase</td>
+                        <td>John Doe</td>
+                        <td>
+                            <select onchange="updateOrderStatus(this)">
+                                <option value="pending">Pending</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button onclick="editOrder(101)">Edit</button>
+                            <button onclick="deleteOrder(101)">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Additional rows can be added here dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Roots & Threads. All rights reserved.</p>
+    </footer>
+
+    <!-- Edit Order Modal -->
+    <div id="editModal">
+        <div>
+            <h3>Edit Order</h3>
+            <form id="editOrderForm">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" required>
+                <br>
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" required>
+                <br>
+                <label for="orderStatus">Order Status:</label>
+                <select id="orderStatus">
+                    <option value="pending">Pending</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                </select>
+                <br>
+                <button type="button" onclick="saveOrderChanges()">Save Changes</button>
+                <button type="button" onclick="closeEditModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function updateOrderStatus(selectElement) {
+            const orderRow = selectElement.closest('tr');
+            const orderId = orderRow.cells[0].innerText; // Get Order ID
+            const status = selectElement.value; // Get selected status
+            alert(`Order ID ${orderId} status updated to ${status}.`);
+            // Here you can add code to send this status update to your backend
+        }
+
+        function editOrder(orderId) {
+            const orderRow = document.getElementById(`order-${orderId}`);
+            const productName = orderRow.cells[1].innerText;
+            const customerName = orderRow.cells[2].innerText;
+            const orderStatus = orderRow.cells[3].querySelector('select').value;
+
+            // Pre-fill the form fields with the order details
+            document.getElementById('productName').value = productName;
+            document.getElementById('customerName').value = customerName;
+            document.getElementById('orderStatus').value = orderStatus;
+
+            // Show the modal for editing
+            document.getElementById('editModal').style.display = 'flex';
+            document.getElementById('editModal').setAttribute('data-order-id', orderId); // Store order ID for saving
+        }
+
+        function saveOrderChanges() {
+            const orderId = document.getElementById('editModal').getAttribute('data-order-id');
+            const updatedProductName = document.getElementById('productName').value;
+            const updatedCustomerName = document.getElementById('customerName').value;
+            const updatedOrderStatus = document.getElementById('orderStatus').value;
+
+            const orderRow = document.getElementById(`order-${orderId}`);
+            orderRow.cells[1].innerText = updatedProductName;
+            orderRow.cells[2].innerText = updatedCustomerName;
+            orderRow.cells[3].querySelector('select').value = updatedOrderStatus;
+
+            // Send the updated data to your backend (add your API call here)
+
+            // Close the modal after saving changes
+            closeEditModal();
+            alert(`Order ID ${orderId} has been updated.`);
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm(`Are you sure you want to delete Order ID: ${orderId}?`)) {
+                // Here you can add code to delete the order from your backend
+                alert(`Order ID ${orderId} has been deleted.`);
+                // Remove the order row from the table
+                const orderRow = document.getElementById(`order-${orderId}`);
+                if (orderRow) {
+                    orderRow.remove();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

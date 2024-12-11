@@ -1,0 +1,184 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Dashboard</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header {
+        background-color: #6A0DAD;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin: 0 15px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        padding: 10px 15px;
+        background-color: #6A0DAD;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #5d0c9b;
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background-color: #6A0DAD;
+        color: white;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #product-list {
+        margin-top: 20px;
+    }
+
+    .product-item {
+        background-color: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-item img {
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin-top: 10px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Artisan Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="Signup.html">Signup</a></li>
+                <li><a href="artisianHome.html">Create Listing</a></li>
+                <li><a href="manageOrders.html">Manage Orders</a></li>
+                <li><a href="customerCommunication.html">Customer Communication</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="create-listing">
+            <h2>Create Product Listing</h2>
+            <form onsubmit="createProduct(); return false;">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" required>
+
+                <label for="product-description">Description:</label>
+                <textarea id="product-description" required></textarea>
+
+                <label for="product-price">Price:</label>
+                <input type="number" id="product-price" required>
+
+                <label for="product-image">Product Image URL</label>
+                <input type="url" id="product-image" required>
+
+                <button type="submit">Create Listing</button>
+            </form>
+        </section>
+
+        <section id="product-list">
+            <h2>Product Listings</h2>
+            <!-- List of products will be dynamically added here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Roots & Threads. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function createProduct() {
+            const productName = document.getElementById("product-name").value;
+            const productDescription = document.getElementById("product-description").value;
+            const productPrice = document.getElementById("product-price").value;
+            const productImage = document.getElementById("product-image").value;
+
+            // Creating the product element dynamically
+            const productList = document.getElementById("product-list");
+
+            const productItem = document.createElement("div");
+            productItem.classList.add("product-item");
+
+            // Adding content to the product item
+            productItem.innerHTML = `
+                <h3>${productName}</h3>
+                <p>${productDescription}</p>
+                <p>Price: $${productPrice}</p>
+                <img src="${productImage}" alt="Product Image">
+            `;
+
+            // Appending the new product item to the product list
+            productList.appendChild(productItem);
+
+            // Clear the form after submission
+            document.querySelector("form").reset();
+        }
+    </script>
+</body>
+</html>

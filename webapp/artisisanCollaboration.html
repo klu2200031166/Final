@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborate with Artisans - Cultural Consultant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #8B4513; /* Brown shade representing traditional crafts */
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #8B4513;
+            border-bottom: 2px solid #8B4513;
+            padding-bottom: 5px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section ul {
+            list-style-type: none;
+        }
+
+        .section ul li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .section ul li i {
+            color: #8B4513;
+            margin-right: 10px;
+        }
+
+        /* Styling the form for artisan collaboration */
+        form {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form button:hover {
+            background-color: #704214; /* Darker brown on hover */
+        }
+
+        /* Popup styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #8B4513;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .popup p {
+            font-size: 18px;
+            color: #8B4513;
+        }
+
+        .popup button {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .popup button:hover {
+            background-color: #704214;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            nav a {
+                float: none;
+                width: 100%;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Collaborate with Artisans</h1>
+        <p>Work closely with artisans to highlight their heritage and craftsmanship.</p>
+    </header>
+
+    <nav>
+        <a href="CulturalConsultant.html">Content Review</a>
+        <a href="provideFeedback.html">Provide Feedback</a>
+        <a href="artisisanCollaboration.html">Collaborate with Artisans</a>
+    </nav>
+
+    <div class="container">
+        <!-- Section 3: Collaborate with Artisans -->
+        <div class="section" id="artisan-collaboration">
+            <h2 class="section-title">Collaborate with Artisans</h2>
+            <p>Work closely with artisans to better highlight their heritage and craftsmanship.</p>
+            <ul>
+                <li><i class="fas fa-users"></i> Engage with artisans to understand their craft better</li>
+                <li><i class="fas fa-handshake"></i> Assist artisans in telling authentic cultural stories</li>
+                <li><i class="fas fa-paint-brush"></i> Help curate content that honors their traditions</li>
+            </ul>
+
+            <!-- Form to collaborate with artisans -->
+            <form id="collaborationForm">
+                <label for="artisan-name">Artisan Name</label>
+                <input type="text" id="artisan-name" name="artisan-name" placeholder="Enter artisan's name" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message or suggestions" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+        
+    </div>
+
+    <!-- Popup Message -->
+    <div class="popup" id="successPopup">
+        <p>Form submitted successfully!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <footer>
+        <p>&copy; 2024 Roots & Threads. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Handle form submission
+        const form = document.getElementById('collaborationForm');
+        const popup = document.getElementById('successPopup');
+        const overlay = document.getElementById('overlay');
+
+        form.addEventListener('submit', function (event) {
+            // Prevent the form from submitting to the server
+            event.preventDefault();
+
+            // Show the popup and overlay
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        function closePopup() {
+            // Hide the popup and overlay
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+
+            // Reset the form
+            form.reset();
+        }
+    </script>
+
+</body>
+</html>

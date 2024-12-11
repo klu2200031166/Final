@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #6A0DAD;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background: #6A0DAD;
+    color: white;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #6A0DAD;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5d0c9b;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="text"], textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #6A0DAD;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Customer Communication</h1>
+        <nav>
+            <ul>
+                <li><a href="Signup.html">Signup</a></li>
+                <li><a href="manageOrders.html">Manage Orders</a></li>
+                <li><a href="customerCommunication.html">Customer Communication</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="message-list">
+            <h2>Message Inbox</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Message ID</th>
+                        <th>Customer Name</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="messages-tbody">
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>Can I get a custom color for this vase?</td>
+                        <td>2024-10-01</td>
+                        <td>
+                            <button onclick="replyToMessage(1)">Reply</button>
+                            <button onclick="deleteMessage(1)">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- More messages can be added here dynamically -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="send-message">
+            <h2>Send Quick Reply</h2>
+            <form id="replyForm" onsubmit="sendReply(); return false;">
+                <label for="messageId">Message ID</label>
+                <input type="text" id="messageId" name="messageId" placeholder="Enter message ID" required>
+
+                <label for="replyText">Reply Message</label>
+                <textarea id="replyText" name="replyText" rows="4" placeholder="Type your reply..." required></textarea>
+
+                <button type="submit">Send Reply</button>
+            </form>
+            <!-- Reply button dynamically added here after writing the reply -->
+            <div id="replyButtonContainer"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Roots & Threads. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function replyToMessage(messageId) {
+            document.getElementById('messageId').value = messageId;
+            document.getElementById('replyText').focus();
+        }
+
+        function sendReply() {
+            const messageId = document.getElementById('messageId').value;
+            const replyText = document.getElementById('replyText').value;
+
+            alert(`Reply sent to Message ID: ${messageId}\nMessage: ${replyText}`);
+            // Here you can add code to send the reply to your backend
+            
+            // Dynamically add the reply button after writing the reply
+            const replyButtonContainer = document.getElementById('replyButtonContainer');
+            const replyButton = document.createElement('button');
+            replyButton.textContent = 'Reply';
+            replyButton.onclick = function() {
+                sendReply();
+            };
+
+            replyButtonContainer.appendChild(replyButton);
+
+            // Optionally, you can disable the form after the reply is sent to prevent resending
+            document.getElementById('replyForm').reset();
+        }
+
+        function deleteMessage(messageId) {
+            if (confirm(`Are you sure you want to delete Message ID: ${messageId}?`)) {
+                alert(`Message ID ${messageId} has been deleted.`);
+                // Add code to delete the message from your backend
+            }
+        }
+    </script>
+</body>
+</html>

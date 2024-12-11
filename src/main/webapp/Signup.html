@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background: url('signin.jpeg') no-repeat center center fixed; /* Background image */
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.login-container, .register-container {
+    width: 350px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent to see the background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="text"], input[type="email"], input[type="password"], select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #18d8e1; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color:#18d8e1;
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+a {
+    color: #0c82de;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+select {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   /* background: rgba(0, 0, 0, 0.5);  Dark overlay to improve text visibility */
+    z-index: -1;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <h2>Login</h2>
+        <form onsubmit="loginUser(); return false;" method="get">
+            <label for="user-type">Login as:</label>
+            <select id="user-type" name="user-type" onchange="showLoginFields()">
+                <option value="customer">Customer</option>
+                <option value="admin">Admin</option>
+                <option value="artist">Artist</option>
+                <option value="cultural_consultant">Cultural Consultant</option>
+            </select>
+
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+
+            <p>Don't have an account? <a href="#" onclick="showRegister()">Create one</a></p>
+        </form>
+    </div>
+
+    <!-- Register Page -->
+    <div class="register-container" id="registerPage" style="display: none;">
+        <h2>Register</h2>
+        <form onsubmit="registerSuccess(); return false;">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="mobno">Mobile Number</label>
+            <input type="text" id="mobno" name="mobno" placeholder="Enter your mobile number" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm your password" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Background Overlay -->
+    <div class="background-overlay"></div>
+
+    <script>
+        function showRegister() {
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("registerPage").style.display = "block";
+        }
+
+        function registerSuccess() {
+            alert("Registered successfully");
+            document.getElementById("registerPage").style.display = "none";
+            document.getElementById("loginPage").style.display = "block";
+        }
+
+        function loginUser() {
+            var userType = document.getElementById("user-type").value;
+            alert(userType + " logged in successfully");
+
+            // Redirect based on user type
+           if (userType === "cultural_consultant") {
+    window.location.href = 'CulturalConsultant.html'; // Redirect to cultural consultant home
+} else if (userType === "artist") {
+    window.location.href = 'artisianHome.html'; // Redirect to artist home
+} else if (userType === "customer") {
+    window.location.href = 'paintings.html'; // Redirect to customer home
+} else {
+    window.location.href = 'adminHome.html'; // Redirect for any other user type
+}
+        }
+    </script>
+
+</body>
+</html>

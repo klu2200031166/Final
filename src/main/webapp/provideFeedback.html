@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provide Feedback - Cultural Consultant</title>
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: #8B4513; /* Brown shade representing traditional crafts */
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #8B4513;
+    border-bottom: 2px solid #8B4513;
+    padding-bottom: 5px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+form {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #704214; /* Darker brown on hover */
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #8B4513;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    nav a {
+        float: none;
+        width: 100%;
+        text-align: left;
+    }
+}
+    </style>
+   <body>
+
+    <header>
+        <h1>Provide Feedback</h1>
+        <p>Your feedback helps us improve and support artisans better.</p>
+    </header>
+
+    <nav>
+        <a href="CulturalConsultant.html">Content Review</a>
+        <a href="provideFeedback.html">Provide Feedback</a>
+        <a href="artisisanCollaboration.html">Collaborate with Artisans</a>
+    </nav>
+
+    <div class="container">
+        <!-- Section for feedback form -->
+        <div class="section" id="feedback-section">
+            <h2 class="section-title">We value your feedback!</h2>
+            <p>Please fill out the form below to provide your feedback about our platform and services.</p>
+
+            <!-- Feedback Form -->
+            <form id="feedbackForm">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="rating">Rate Us</label>
+                <select id="rating" name="rating" required>
+                    <option value="" disabled selected>Choose a rating</option>
+                    <option value="5">Excellent</option>
+                    <option value="4">Good</option>
+                    <option value="3">Average</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Very Poor</option>
+                </select>
+
+                <label for="comments">Your Comments</label>
+                <textarea id="comments" name="comments" rows="5" placeholder="Enter your feedback or suggestions" required></textarea>
+
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Roots & Threads. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('feedbackForm');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Thank you for your feedback!');
+            form.reset();
+        });
+    </script>
+    </head>
+</body>
+</html>

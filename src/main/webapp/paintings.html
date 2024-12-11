@@ -1,0 +1,307 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roots & Threads</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 0;  
+            background-color: #f4f4f4;  
+        }  
+
+        /* Header styles */  
+        .header {  
+            background-color: #333;  
+            color: white;  
+            padding: 10px;  
+            text-align: center;  
+            font-size: 24px;  
+        }  
+
+        .header a {  
+            color: white;  
+            text-decoration: none;  
+            margin: 0 15px;  
+            font-size: 16px;  
+        }  
+
+        /* Container for categories and paintings */  
+        .container {  
+            display: flex;  
+            padding: 20px;  
+        }  
+
+        /* Sidebar for categories */  
+        .sidebar {  
+            width: 20%;  
+            background-color: white;  
+            padding: 20px;  
+            border-radius: 8px;  
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  
+        }  
+
+        .sidebar h3 {  
+            margin-bottom: 20px;  
+            text-align: center;  
+        }  
+
+        .sidebar ul {  
+            list-style: none;  
+            padding: 0;  
+        }  
+
+        .sidebar ul li {  
+            margin: 10px 0;  
+            padding: 10px;  
+            background-color: #f4f4f4;  
+            border-radius: 4px;  
+            text-align: center;  
+            cursor: pointer;  
+        }  
+
+        .sidebar ul li:hover, .sidebar ul li.active {  
+            background-color: #333;  
+            color: white;  
+        }  
+
+        /* Main content area for paintings */  
+        .main-content {  
+            width: 80%;  
+            margin-left: 20px;  
+        }  
+
+        .main-content h3 {  
+            text-align: center;  
+            margin-bottom: 20px;  
+        }  
+
+        /* Grid layout for paintings */  
+        .grid {  
+            display: flex;  
+            gap: 20px;  
+            flex-wrap: wrap;  
+            justify-content: space-between; /* Align the grid-items properly */  
+        }  
+
+        .grid-item {  
+            background-color: white;  
+            padding: 23px;  
+            border-radius: 20px;  
+            width: 23%;  
+            text-align: center;  
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);  
+        }  
+
+        .grid-item img {  
+            width: 100%;  
+            height: 200px; /* Set a fixed height for uniform size */  
+            object-fit: cover; /* Make sure the images fit nicely without stretching */  
+            border-radius: 4px;  
+            margin-bottom: 10px;  
+        }  
+
+        .grid-item h4 {  
+            margin-bottom: 5px;  
+            font-size: 18px;  
+        }  
+
+        .grid-item p {  
+            margin-bottom: 10px;  
+            color: #777;  
+        }  
+
+        .grid-item .price {  
+            font-size: 20px;  
+            color: #333;  
+            font-weight: bold;  
+        }  
+
+        .grid-item button {  
+            background-color: #e53935;  
+            color: white;  
+            padding: 10px;  
+            border: none;  
+            border-radius: 4px;  
+            cursor: pointer;  
+        }  
+
+        .grid-item button:hover {  
+            background-color: #d32f2f;  
+        }  
+    </style>  
+    <script>  
+        function filterPaintings(category) {  
+            const allItems = document.querySelectorAll('.grid-item');  
+            allItems.forEach(item => {  
+                if (category === 'All' || item.dataset.category === category) {  
+                    item.style.display = 'block';  
+                } else {  
+                    item.style.display = 'none';  
+                }  
+            });  
+        }  
+    </script>  
+</head>  
+<body>  
+
+    <!-- Header -->  
+    <div class="header">  
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a> 
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>   
+    </div>  
+
+    <!-- Main container -->  
+    <div class="container">  
+
+        <!-- Sidebar -->  
+        <div class="sidebar">  
+            <h3>Categories</h3>  
+            <ul>  
+                <li class="active" onclick="filterPaintings('All')">All</li>  
+                <li onclick="filterPaintings('Bidriware')">Bidriware</li>  
+                <li onclick="filterPaintings('Dhokra')">Dhokra</li>  
+                <li onclick="filterPaintings('Terracotta')">Terracotta</li>  
+                <li onclick="filterPaintings('Buddist Figures')">Buddist Figures</li>  
+                <li onclick="filterPaintings('Artistic Textiles')">Artistic Textiles</li>
+            </ul>  
+        </div>  
+
+        <!-- Main content -->  
+      <div class="main-content">  
+            <h3>Products</h3>  
+            <form action="cart.html" method="get">  
+                <div class="grid">  
+                    <!-- Painting 1 -->
+                      <div class="grid-item" data-category="Terracotta">  
+                        <img src="terracota1.jpeg" alt="pot with bird decorations">  
+                        <h4>pot with bird decorations</h4>  
+                        <p>Category:Terracotta</p>  
+                        <p class="price">₹ 450</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div> 
+
+                    <!-- Painting 2 --> 
+                    <div class="grid-item" data-category="Terracotta">  
+                        <img src="terracota2.jpeg" alt="Ek-chala Durga">  
+                        <h4>Ek-chala Durga</h4>  
+                        <p>Category:Terracotta</p>  
+                        <p class="price">₹ 600</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div>   
+
+                    <!-- Painting 3 --> 
+                    <div class="grid-item" data-category="Terracotta">  
+                        <img src="terracota3.jpeg" alt="Wine Glass">  
+                        <h4>Wine Glass</h4>  
+                        <p>Category:Terracotta</p>  
+                        <p class="price">₹ 450</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div>   
+                    
+
+                    <!-- Painting 4 --> 
+                    
+                    <div class="grid-item" data-category="Dhokra">  
+                        <img src="dokra2.jpg" alt="Dhokra Art Tribal Statue">  
+                        <h4>Dhokra Art Tribal Statue</h4>  
+                        <p>Category:Dhokra</p>  
+                        <p class="price">₹ 500</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div> 
+                      
+                    <div class="grid-item" data-category="Dhokra">  
+                        <img src="dokra1.jpeg" alt="Craft Curio">  
+                        <h4>Craft Curio</h4>  
+                        <p>Category:Dhokra</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div> 
+                    
+                    <div class="grid-item" data-category="Dhokra">  
+                        <img src="dokra3.jpeg" alt="tribal-inspired earrings">  
+                        <h4>tribal-inspired earrings</h4>  
+                        <p>Category:Dhokra</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div> 
+                    
+                    <div class="grid-item" data-category="Bidriware">  
+                        <img src="birsiware1.jpeg" alt="tribal-inspired chain">  
+                        <h4>tribal-inspired chain</h4>  
+                        <p>Category:Bidriware</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div>  
+                    
+                    <div class="grid-item" data-category="Bidriware">  
+                        <img src="birdiware2.jpg" alt="Bidri vase">  
+                        <h4>Bidri vase</h4>  
+                        <p>Category:Bidriware</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div> 
+                    
+                    <div class="grid-item" data-category="Buddist Figures">  
+                        <img src="budha1.jpeg" alt="Rock Budhha">  
+                        <h4>Rock Budhha</h4>  
+                        <p>Category:Buddist Figures</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div> 
+                    
+                    <div class="grid-item" data-category="Buddist Figures">  
+                        <img src="budha2.jpeg" alt="Seated Budhha">  
+                        <h4>Seated Budhha</h4>  
+                        <p>Category:Buddist Figures</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div>  
+                    
+                    <div class="grid-item" data-category="Buddist Figures">  
+                        <img src="budha3.jpeg" alt="Bronze Budhha">  
+                        <h4>Bronze Budhha</h4>  
+                        <p>Category:Buddist Figures</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div> 
+                    
+                    <div class="grid-item" data-category="Artistic Textiles">  
+                        <img src="art1.jpeg" alt="Rumal">  
+                        <h4>Rumal</h4>  
+                        <p>Category:Artistic Textiles</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div>
+                    
+                    <div class="grid-item" data-category="Artistic Textiles">  
+                        <img src="art2.jpeg" alt="Churia">  
+                        <h4>Churia</h4>  
+                        <p>Category:Artistic Textiles</p>  
+                        <p class="price">₹ 399</p>  
+                        <button type="submit">Add To Cart</button>  
+                    </div> 
+                    
+                    <div class="grid-item" data-category="Artistic Textiles">  
+                        <img src="art3.jpeg" alt="Bastar Tribal Art">  
+                        <h4>Bastar Tribal Art</h4>  
+                        <p>Category:Artistic Textiles</p>  
+                        <p class="price">₹ 399</p >  
+                        <button type="submit">Add To Cart</button>  
+                    </div>
+                    
+
+                    <!-- Painting 5 -->   
+                     
+                </div>  
+                
+            </form>  
+        </div>  
+
+    </div>  
+
+</body>  
+</html>

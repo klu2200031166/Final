@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interact with Buyers | View Messages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: #333;
+        }
+
+        .messages-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .message-item {
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .message-item:last-child {
+            border-bottom: none;
+        }
+
+        .message-item h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .message-item p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .message-actions button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .message-actions button:hover {
+            background-color: #2980b9;
+        }
+
+        .reply-btn {
+            background-color: #2ecc71;
+        }
+
+        .reply-btn:hover {
+            background-color: #27ae60;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #e74c3c;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Interact with Buyers</h1>
+
+    <!-- Messages Section -->
+    <div class="messages-container">
+        <!-- Example message from a buyer -->
+        <div class="message-item">
+            <div class="message-content">
+                <h3>John Doe</h3>
+                <p>Hi, I’m interested in your artwork "Starry Night". Could you tell me more about its availability?</p>
+            </div>
+            <div class="message-actions">
+                <button class="reply-btn" onclick="alert('Reply to John Doe')">Reply</button>
+                <button onclick="alert('Viewing detailed conversation with John Doe')">View Details</button>
+            </div>
+        </div>
+
+        <!-- Another example message -->
+        <div class="message-item">
+            <div class="message-content">
+                <h3>Jane Smith</h3>
+                <p>I love your "Sunset Glory" painting! Do you ship internationally?</p>
+            </div>
+            <div class="message-actions">
+                <button class="reply-btn" onclick="alert('Reply to Jane Smith')">Reply</button>
+                <button onclick="alert('Viewing detailed conversation with Jane Smith')">View Details</button>
+            </div>
+        </div>
+
+        <!-- If no messages are available -->
+        <!-- <p class="empty-message">No messages from buyers at the moment.</p> -->
+    </div>
+
+</body>
+</html>

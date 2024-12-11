@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('signup.jpeg'); /* Replace 'background.jpg' with your actual image path */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Navbar styles */
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 16px;
+        }
+
+        .header a:hover {
+            color: #ddd;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group button {
+            background-color: black; /* Updated to black */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .form-group button:hover {
+            background-color: #444;
+        }
+
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            color: green;
+        }
+    </style>
+    <script>
+        function updateProfile(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById('message').innerText = "Profile updated successfully!";
+        }
+
+        function changePassword(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById('message').innerText = "Password changed successfully!";
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="header">
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+        <a href="paintings.html">Products</a>
+    </div>
+
+    <!-- Container for profile form -->
+    <div class="container">
+        <h2>Customer Profile</h2>
+        <form id="profileForm" onsubmit="updateProfile(event)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Update Profile</button> <!-- Updated button to black -->
+            </div>
+        </form>
+
+        <h2>Change Password</h2>
+        <form id="passwordForm" onsubmit="changePassword(event)">
+            <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter your current password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" placeholder="Enter a new password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm New Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your new password" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Change Password</button> <!-- Updated button to black -->
+            </div>
+        </form>
+
+        <div id="message" class="message"></div>
+    </div>
+
+</body>
+</html>
